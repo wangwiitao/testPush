@@ -183,3 +183,5 @@ entry: "[name].js";
 ```markdown
 if use script from cdn, use publicPath as the host.
 ```
+
+### devtool:source map
