@@ -1,4 +1,8 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // installed via npm
+
 const path = require("path");
+const { plugins } = require("./postcss.config");
 module.exports = {
   mode: "development",
   entry: "./index.js",
@@ -37,6 +41,13 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "my webpack practice",
+      template: "index.html",
+    }),
+    new CleanWebpackPlugin()
+  ],
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),

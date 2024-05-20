@@ -1,21 +1,24 @@
+### module
+
 #### file-loader
+
 ```js
-const path = require('path')
+const path = require("path");
 module.exports = {
   entry: "./index.js",
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
-        test:/\.(jpe?g|png|gif)$/i,
-        use:{
-          loader:'file-loader',
-          options:{
-            name:'[name].[ext]',
-            outputPath:'imgs/'
-          }
-        }
-      }
-    ]
+        test: /\.(jpe?g|png|gif)$/i,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+            outputPath: "imgs/",
+          },
+        },
+      },
+    ],
   },
   output: {
     filename: "bundle.js",
@@ -25,35 +28,36 @@ module.exports = {
 ```
 
 #### url-loader
+
 > return data-url
 
 ```js
-const path = require('path')
+const path = require("path");
 module.exports = {
   entry: "./index.js",
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
-        test:/\.(jpe?g|png|gif)$/i,
-        use:{
-          loader:'url-loader',
-          options:{
-            name:'[name].[ext]',
-            outputPath:'imgs/'
-          }
-        }
-      }
-    ]
+        test: /\.(jpe?g|png|gif)$/i,
+        use: {
+          loader: "url-loader",
+          options: {
+            name: "[name].[ext]",
+            outputPath: "imgs/",
+          },
+        },
+      },
+    ],
   },
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
 };
-
 ```
 
 #### mode
+
 ```js
 const path = require("path");
 module.exports = {
@@ -78,9 +82,10 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
 };
-
 ```
-#### limit 
+
+#### limit
+
 ```js
 module.exports = {
   mode: "development",
@@ -105,11 +110,12 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
 };
-
 ```
 
 #### style-loader,css-loader
-> loader执行术训，从后往前，从下往上
+
+> loader 执行术训，从后往前，从下往上
+
 ```js
 const path = require("path");
 module.exports = {
@@ -129,9 +135,9 @@ module.exports = {
         },
       },
       {
-        test:/\.css$/,
-        use:['style-loader','css-loader']
-      }
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   output: {
@@ -139,8 +145,41 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
 };
+```
+
+### plugins
+
+#### css modules
+
+seprate
+
+#### htmwebpackplugin
+
+#### clean webpack plugin
+
+```js
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+  },
 
 ```
 
-#### css modules
-seprate
+#### when without output filename
+
+when no output filename figured, use the entry key, the default is main
+
+```js
+entry: {
+  main: "index.js";
+}
+equals;
+
+entry: "index.js";
+entry: "[name].js";
+```
+#### publicPath
+```markdown
+if use script from cdn, use publicPath as the host.
+```
