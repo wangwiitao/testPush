@@ -185,3 +185,12 @@ if use script from cdn, use publicPath as the host.
 ```
 
 ### devtool:source map
+- none
+- eval-source-map 
+- inline-source-map不生成额外sourcemap文件，生成base64编码在脚本中
+
+`cheap 能定位到行，定位不到列`
+
+`module 不仅自己业务代码，还管第三方模块内容`
+
+`eval 通过eval形式在代码中生成，并不额外生成source map文件`
