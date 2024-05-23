@@ -194,3 +194,20 @@ if use script from cdn, use publicPath as the host.
 `module 不仅自己业务代码，还管第三方模块内容`
 
 `eval 通过eval形式在代码中生成，并不额外生成source map文件`
+
+### devserver
+```bash
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 9000,
+  },
+```
+
+### 请求转发 proxy
+- target
+- pathRewrite
+
+### 热更新HMR

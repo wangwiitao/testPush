@@ -5,6 +5,16 @@ const path = require("path");
 const { plugins } = require("./postcss.config");
 module.exports = {
   mode: "development",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 9000,
+    // proxy:{
+
+    // }
+  },
   entry: "./index.js",
   module: {
     rules: [

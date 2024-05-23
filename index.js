@@ -12,6 +12,7 @@ img.className += "logo"
 const app = document.getElementById('app')
 
 app.appendChild(img)
+console.log('123')
 
 
 new Header()
