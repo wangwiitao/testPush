@@ -1,14 +1,17 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // installed via npm
+const webpack = require('webpack')
 
 const path = require("path");
 const { plugins } = require("./postcss.config");
+const { webpack } = require("webpack");
 module.exports = {
   mode: "development",
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
+    hot:true,
     compress: true,
     port: 9000,
     // proxy:{
@@ -56,7 +59,8 @@ module.exports = {
       title: "my webpack practice",
       template: "index.html",
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   output: {
     filename: "bundle.js",
