@@ -2,6 +2,7 @@
 // const header = document.createElement('div')
 // header.innerText = 'Header'
 // app.appendChild(header)
+// import '@babel/polyfill'
 import mountain from './mountain.JPG'
 import Header from './Header.js'
 import './index.scss'
@@ -16,3 +17,7 @@ console.log('123')
 
 
 new Header()
+
+const nnnxxx = ()=>{
+    console.log(123)
+}

@@ -1,17 +1,16 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // installed via npm
-const webpack = require('webpack')
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // installed via npm
+const webpack = require("webpack");
 
 const path = require("path");
 const { plugins } = require("./postcss.config");
-const { webpack } = require("webpack");
 module.exports = {
   mode: "development",
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, "dist"),
     },
-    hot:true,
+    hot: true,
     compress: true,
     port: 9000,
     // proxy:{
@@ -21,6 +20,22 @@ module.exports = {
   entry: "./index.js",
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        loader: "babel-loader",
+        options: {
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                useBuiltIns: "usage",
+                corejs: 3,
+              },
+            ],
+          ],
+        },
+        exclude: /node_modules/,
+      },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: {
@@ -60,8 +75,11 @@ module.exports = {
       template: "index.html",
     }),
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
+  optimization: {
+    usedExports: true,
+  },
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),

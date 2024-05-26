@@ -270,3 +270,40 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin() //here
   ],
 ```
+
+### babel ES6
+
+```bash
+npm i --save-dev babel-loader @babel/core
+npm install @babel/preset-env --save-dev
+npm install --save @babel/polyfill
+  rules: [
+      {
+        test: /\.js$/,
+        loader: "babel-loader",
+        options: {
+          presets: [["@babel/preset-env",{
+            useBuiltIns:'usage',
+            corejs:3
+          }]],
+        },
+        exclude: /node_modules/,
+      },
+```
+
+### Tree shaking
+- 只支持ES module
+- 不支持commonJs
+ES Module静态音符，编译时引入
+CommonJs动态引入，执行时引入
+
+```js
+package.json
+  "sideEffects":false,或
+  "sideEffects":['@babel/polyfill','*.css']
+
+webpack.config.js
+  optimization: {
+    usedExports: true,
+  },
+```
